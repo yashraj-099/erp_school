@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h4>Edit Result</h4>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button class="btn btn-success">Update</button>
+                <a href="{% url 'result_list' %}" class="btn btn-secondary">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

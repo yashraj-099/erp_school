@@ -1,0 +1,181 @@
+[
+  {
+    "model": "core.role",
+    "pk": 1,
+    "fields": {
+      "name": "Admin"
+    }
+  },
+  {
+    "model": "core.role",
+    "pk": 2,
+    "fields": {
+      "name": "Teacher"
+    }
+  },
+  {
+    "model": "core.role",
+    "pk": 3,
+    "fields": {
+      "name": "Student"
+    }
+  },
+  {
+    "model": "core.school",
+    "pk": 1,
+    "fields": {
+      "name": "Sunrise Public School",
+      "address": "Demo address"
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 1,
+    "fields": {
+      "username": "admin",
+      "password": "pbkdf2_sha256$260000$fake$fakehash",
+      "email": "admin@erp.com",
+      "is_superuser": true,
+      "is_staff": true,
+      "role": 1
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 2,
+    "fields": {
+      "username": "teacher",
+      "password": "pbkdf2_sha256$260000$fake$fakehash",
+      "email": "teacher@erp.com",
+      "is_staff": false,
+      "role": 2
+    }
+  },
+  {
+    "model": "core.user",
+    "pk": 3,
+    "fields": {
+      "username": "student",
+      "password": "pbkdf2_sha256$260000$fake$fakehash",
+      "email": "student@erp.com",
+      "is_staff": false,
+      "role": 3
+    }
+  },
+  {
+    "model": "core.subject",
+    "pk": 1,
+    "fields": {
+      "name": "Mathematics",
+      "code": "MATH101",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.subject",
+    "pk": 2,
+    "fields": {
+      "name": "Science",
+      "code": "SCI101",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.teacher",
+    "pk": 1,
+    "fields": {
+      "name": "Alice Teacher",
+      "email": "alice@school.com",
+      "school": 1,
+      "user": 2,
+      "subjects": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "core.teacher",
+    "pk": 2,
+    "fields": {
+      "name": "Bob Teacher",
+      "email": "bob@school.com",
+      "school": 1,
+      "subjects": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "core.student",
+    "pk": 1,
+    "fields": {
+      "name": "Rahul",
+      "email": "rahul@example.com",
+      "dob": "2010-05-12",
+      "grade": "5",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.student",
+    "pk": 2,
+    "fields": {
+      "name": "Asha",
+      "email": "asha@example.com",
+      "dob": "2011-07-01",
+      "grade": "4",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.student",
+    "pk": 3,
+    "fields": {
+      "name": "Karan",
+      "email": "karan@example.com",
+      "dob": "2009-02-20",
+      "grade": "6",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.feerecord",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "amount": "5000.00",
+      "status": "Unpaid",
+      "date": "2025-01-01"
+    }
+  },
+  {
+    "model": "core.feerecord",
+    "pk": 2,
+    "fields": {
+      "student": 2,
+      "amount": "4500.00",
+      "status": "Paid",
+      "date": "2025-01-05"
+    }
+  },
+  {
+    "model": "core.event",
+    "pk": 1,
+    "fields": {
+      "title": "Annual Day",
+      "date": "2025-12-01",
+      "description": "School annual day",
+      "school": 1
+    }
+  },
+  {
+    "model": "core.event",
+    "pk": 2,
+    "fields": {
+      "title": "Sports Day",
+      "date": "2025-11-20",
+      "description": "Sports events",
+      "school": 1
+    }
+  }
+]

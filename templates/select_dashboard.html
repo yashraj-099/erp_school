@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height:70vh;">
+  <div class="card p-4" style="width:420px;">
+    <h4 class="mb-3">Welcome, {{ user.username }}</h4>
+    <form method="get" action="/redirect-dashboard/">
+      <div class="mb-3"><label>Select Module</label>
+      <select name="module" class="form-select">
+        {% for option in dashboard_options %}
+        <option value="{{ option.url }}">{{ option.label }}</option>
+        {% endfor %}
+      </select></div>
+      <button class="btn btn-success w-100">Go</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

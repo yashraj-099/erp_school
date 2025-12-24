@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="mb-4 fw-bold">Student Dashboard</h2>
+
+    <!-- Student Info Cards -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Your Grade</h6>
+                <h2 class="fw-bold">{{ student.grade }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Subjects Enrolled</h6>
+                <h2 class="fw-bold">{{ total_subjects }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 p-3">
+                <h6 class="text-muted">Fee Status</h6>
+                <h2 class="fw-bold">
+                    {% if latest_fee.status %}
+                        {{ latest_fee.status }}
+                    {% else %}
+                        Not Updated
+                    {% endif %}
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Section -->
+    <div class="card shadow-sm border-0 mt-4">
+        <div class="card-header bg-white">
+            <h5 class="fw-bold">Upcoming School Events</h5>
+        </div>
+        <div class="card-body">
+
+            <ul class="list-group">
+                {% for event in events %}
+                <li class="list-group-item">
+                    <strong>{{ event.title }}</strong>
+                    <span class="text-muted float-end">{{ event.date }}</span><br>
+                    <small>{{ event.description }}</small>
+                </li>
+                {% empty %}
+                <li class="list-group-item text-center text-muted">
+                    No events available.
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container mt-4">
+
+    <h4>Welcome, {{ student.name }}</h4>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+
+            <h5>Your Results</h5>
+
+            {% if results %}
+                <table class="table table-bordered mt-3">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in results %}
+                        <tr>
+                            <td>{{ r.subject.name }}</td>
+                            <td>{{ r.marks_obtained }}</td>
+                            <td>{{ r.total_marks }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{% url 'generate_result' student.id %}"
+                   class="btn btn-success">
+                    Download Result PDF
+                </a>
+            {% else %}
+                <div class="alert alert-warning">
+                    Result not uploaded yet
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

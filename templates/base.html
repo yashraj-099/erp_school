@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>School ERP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+
+       /* Make forms wide, clean, modern */
+    .form-section-title { 
+        font-size: 28px; 
+        font-weight: 600; 
+        margin-bottom: 30px; 
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .form-control, .form-select {
+        padding: 14px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+
+
+      #wrapper.toggled #sidebar-wrapper {
+        display: none;
+      }
+      #wrapper.toggled #page-content-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+        <div class="container-fluid mt-4">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById('sidebarToggle')?.addEventListener('click', function () {
+        document.getElementById('wrapper').classList.toggle('toggled')
+      })
+    </script>
+  </body>
+</html>

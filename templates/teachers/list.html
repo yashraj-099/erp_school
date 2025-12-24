@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex {% if user.is_authenticated %}toggled{% endif %}" id="wrapper">
+      {% if user.is_authenticated %}
+        <div class="border-end bg-primary text-white" id="sidebar-wrapper" style="min-width:220px;">
+          <div class="sidebar-heading text-center py-3 fw-bold">School ERP</div>
+          <div class="list-group list-group-flush">
+            <a href="/admin-dashboard/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-home me-2"></i> Dashboard</a>
+            <a href="/schools/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa-sharp-duotone fa-solid fa-school"></i> Schools</a>
+            <a href="/students/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-user-graduate me-2"></i> Students</a>
+            <a href="/teachers/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-chalkboard-teacher me-2"></i> Teachers</a>
+            <a href="/subjects/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-book me-2"></i> Subjects</a>
+            <a href="/fees/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-wallet me-2"></i> Fees</a>
+            <a href="/results/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-calendar-alt me-2"></i> Results</a>
+            <a href="/events/" class="list-group-item list-group-item-action bg-primary text-white"><i class="fa fa-calendar-alt me-2"></i> Events</a>
+          </div>
+        </div>
+      {% endif %}
+      <div id="page-content-wrapper"
+        style="{% if user.is_authenticated %}
+          width:100%;
+        {% else %}
+          width:100%; margin-left:0;
+        {% endif %}">
+
+        <!--   nav bar    -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <div class="container-fluid">
+            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+              <button class="btn btn-primary" id="sidebarToggle"><i class="fa fa-bars"></i></button>
+            {% comment %} {% endif %} {% endcomment %}
+            <div class="ms-auto">
+              {% if user.is_authenticated %}
+                <span class="me-3">{{ user.username }}</span>
+                <a href="/logout/" class="btn btn-outline-secondary btn-sm">Logout</a>
+              {% else %}
+                <a href="/login/" class="btn btn-outline-primary btn-sm">Login</a>
+              {% endif %}
+            </div>
+          </div>
+        </nav>
+
+<div class="d-flex justify-content-between mb-3  pt-3"><h3>Teachers</h3><a href="/teachers/add/" class="btn btn-success">+ Add</a></div>
+<table class="table table-striped">
+<thead><tr><th>ID</th><th>Name</th><th>Email</th><th>School</th><th>Actions</th></tr></thead>
+<tbody>
+{% for t in teachers %}
+<tr>
+<td>{{ t.id }}</td>
+<td>{{ t.name }}</td>
+<td>{{ t.email }}</td>
+<td>{{ t.school.name }}</td>
+<td>
+<a href="/teachers/edit/{{ t.id }}/" class="btn btn-sm btn-warning">Edit</a>
+<button class="btn btn-sm btn-danger" onclick="confirmDelete('{{ t.id }}')">Delete</button>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<script>
+function confirmDelete(id){
+  Swal.fire({title:'Delete?',text:'This will be removed',icon:'warning',showCancelButton:true}).then(res=>{if(res.isConfirmed) window.location.href='/teachers/delete/'+id+'/';});
+}
+</script>
+{% endblock %}

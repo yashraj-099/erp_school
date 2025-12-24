@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <h3>{{ form_title }}</h3>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary">Save</button>
+  <a href="/fees/" class="btn btn-secondary">Cancel</a>
+</form> {% endcomment %}
+
+<div class="container mt-4">
+
+    <h2 class="form-section-title">Fees Details</h2>
+
+    <form method="POST" class="p-4">
+        {% csrf_token %}
+
+        <div class="row">
+            {% for field in form %}
+                <div class="col-md-6 form-group">
+                    <label class="form-label">{{ field.label }} 
+                        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    <small class="text-danger">{{ field.errors }}</small>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-4 d-flex justify-content-end">
+            <a href="{% url 'students_list' %}" class="btn btn-outline-secondary btn-lg me-3">Cancel</a>
+            <button type="submit" class="btn btn-success btn-lg px-4">Save</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
