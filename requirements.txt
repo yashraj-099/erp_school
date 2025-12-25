@@ -8,3 +8,4 @@ python-decouple
 whitenoise
 requests
 reportlab
+qrcode[pil]
