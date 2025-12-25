@@ -1,11 +1,16 @@
 from pathlib import Path
 import sys
-
+from decouple import config
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(BASE_DIR))
 SECRET_KEY = "demo"
-DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.onrender.com'
+]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -26,9 +31,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "school_erp.middleware.CASJWTAuthenticationMiddleware",
 ]
+
 # CAS Integration Settings
 CAS_VERIFY_ENDPOINT = "http://127.0.0.1:8000/api/tokens/verify/"  # your CAS verify endpoint
 CAS_TIMEOUT = 5  # seconds
@@ -57,15 +63,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "school_erp.wsgi.application"
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'erp_db',
-        'USER': 'root',
-        'PASSWORD': 'Yashraj1123@',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            "charset": "utf8mb4",
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 AUTH_PASSWORD_VALIDATORS = []
@@ -74,8 +77,10 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
