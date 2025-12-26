@@ -11,6 +11,9 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.onrender.com'
 ]
+
+AUTH_USER_MODEL = "core.User"
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -23,7 +26,6 @@ INSTALLED_APPS = [
     'core',
     
 ]
-AUTH_USER_MODEL = "core.User"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
