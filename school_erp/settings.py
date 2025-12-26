@@ -12,7 +12,7 @@ ALLOWED_HOSTS = [
     '.onrender.com'
 ]
 
-AUTH_USER_MODEL = "core.User"
+# AUTH_USER_MODEL = "core.User"
 
 INSTALLED_APPS = [
     "django.contrib.admin",
