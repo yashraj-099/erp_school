@@ -4,7 +4,7 @@ from core import views
 from django.conf.urls import handler404, handler500, handler403, handler400
 
 handler404 = "core.views.error_404"
-handler500 = "core.views.error_500"
+# handler500 = "core.views.error_500"
 handler403 = "core.views.error_403"
 handler400 = "core.views.error_400"
 
