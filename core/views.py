@@ -7,11 +7,10 @@ def login_view(request):
         password = request.POST.get("password")
 
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        if user:
             login(request, user)
-            return redirect("/admin/")
-        else:
-            return render(request, "login.html", {"error": "Invalid credentials"})
+            return redirect("/admin/")   # SAFE
+        return render(request, "login.html", {"error": "Invalid credentials"})
 
     return render(request, "login.html")
 
@@ -19,6 +18,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
+
 
 
 
