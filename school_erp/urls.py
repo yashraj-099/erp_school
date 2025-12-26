@@ -9,8 +9,8 @@ from django.urls import path, include
 # handler400 = "core.views.error_400"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('core.urls')),
+    path("admin/", admin.site.urls),
+    path("", include("core.auth_urls")),
     # path('api/', include('core.api_urls')),
     # path('api-auth/', include('rest_framework.urls')),
     # path('api/token/', include('core.api_token_urls')),
