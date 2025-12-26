@@ -58,22 +58,22 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-@login_required
-def select_dashboard(request):
-    user = request.user
-    options = []
-    if user.is_superuser:
-        name = 'Admin'
-    else:
-        role = getattr(user, 'role', None)
-        name = role.name if role else 'User'
-    if name == 'Admin':
-        options = [{'label':'Admin Dashboard','url':'/admin-dashboard/'},{'label':'Students','url':'/students/'},{'label':'Teachers','url':'/teachers/'},{'label':'Subjects','url':'/subjects/'},{'label':'Fees','url':'/fees/'},{'label':'Events','url':'/events/'}]
-    elif name == 'Teacher':
-        options = [{'label':'Teacher Dashboard','url':'/teacher-dashboard/'},{'label':'My Subjects','url':'/subjects/'},{'label':'Events','url':'/events/'}]
-    else:
-        options = [{'label':'Student Dashboard','url':'/student-dashboard/'},{'label':'My Fees','url':'/fees/'},{'label':'Events','url':'/events/'}]
-    return render(request,'select_dashboard.html',{'dashboard_options':options})
+# @login_required
+# def select_dashboard(request):
+#     user = request.user
+#     options = []
+#     if user.is_superuser:
+#         name = 'Admin'
+#     else:
+#         role = getattr(user, 'role', None)
+#         name = role.name if role else 'User'
+#     if name == 'Admin':
+#         options = [{'label':'Admin Dashboard','url':'/admin-dashboard/'},{'label':'Students','url':'/students/'},{'label':'Teachers','url':'/teachers/'},{'label':'Subjects','url':'/subjects/'},{'label':'Fees','url':'/fees/'},{'label':'Events','url':'/events/'}]
+#     elif name == 'Teacher':
+#         options = [{'label':'Teacher Dashboard','url':'/teacher-dashboard/'},{'label':'My Subjects','url':'/subjects/'},{'label':'Events','url':'/events/'}]
+#     else:
+#         options = [{'label':'Student Dashboard','url':'/student-dashboard/'},{'label':'My Fees','url':'/fees/'},{'label':'Events','url':'/events/'}]
+#     return render(request,'select_dashboard.html',{'dashboard_options':options})
 
 @login_required
 def redirect_dashboard(request):
