@@ -1,7 +1,18 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('', views.login_view, name='login'),
+    path("", views.login_view, name="home"),      # ROOT → LOGIN
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
+
+    path("select-dashboard/", views.select_dashboard, name="select_dashboard"),
+    path("admin-dashboard/", views.admin_dashboard, name="admin_dashboard"),
+    path("teacher-dashboard/", views.teacher_dashboard, name="teacher_dashboard"),
+    path("student-dashboard/", views.student_dashboard, name="student_dashboard"),
+
+
+    
+    # path('', views.login_view, name='home'),
     # path('generate-invoice/<int:student_id>/', views.generate_fee_invoice, name='generate_invoice'),
     # path('generate-result/<int:student_id>/', views.generate_result_pdf, name='generate_result'),
     # path("results/add/", views.add_result, name="add_result"),
@@ -10,8 +21,8 @@ urlpatterns = [
     # path("results/delete/<int:pk>/", views.delete_result, name="delete_result"), 
 
 
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
+    # path('login/', views.login_view, name='login'),
+    # path('logout/', views.logout_view, name='logout'),
     # path('select-dashboard/', views.select_dashboard, name='select_dashboard'),
     # path('redirect-dashboard/', views.redirect_dashboard, name='redirect_dashboard'),
     # path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
