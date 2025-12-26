@@ -53,7 +53,8 @@ def login_view(request):
               return redirect('/admin/')   # SAFE redirect
           else:
               return render(request, 'login.html', {'error': 'Invalid credentials'})
-              return render(request, 'login.html')
+        
+        return render(request, 'login.html')
 
 def logout_view(request):
     logout(request)
