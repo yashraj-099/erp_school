@@ -43,11 +43,17 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('select_dashboard')
-        return render(request, 'login.html', {'error':'Invalid credentials'})
-    return render(request, 'login.html')
+    #     if user:
+    #         login(request, user)
+    #         return redirect('select_dashboard')
+    #     return render(request, 'login.html', {'error':'Invalid credentials'})
+    # return render(request, 'login.html')
+          if user is not None:
+              login(request, user)
+              return redirect('/admin/')   # SAFE redirect
+          else:
+              return render(request, 'login.html', {'error': 'Invalid credentials'})
+              return render(request, 'login.html')
 
 def logout_view(request):
     logout(request)
