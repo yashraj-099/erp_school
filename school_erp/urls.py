@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from core import views
+# from core import views
 # from django.conf.urls import handler404, handler500, handler403, handler400
 
 # handler404 = "core.views.error_404"
